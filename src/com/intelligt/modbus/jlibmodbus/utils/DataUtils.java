@@ -74,14 +74,21 @@ public class DataUtils {
     }
 
     static public int[] BeToIntArray(byte[] bytes) {
+        //2023.01.12 Jeongsoo Chae
+        /*
         int[] dst = new int[bytes.length / 4];
         int i = 0;
         for (int j = 0; i < dst.length; j += 4) {
-            dst[i] = ((bytes[j] )<< 24) |
-                    ((bytes[j + 1] & 0xFF) << 16)
-                    | ((bytes[j + 2] & 0xFF) << 8)
-                    | ((bytes[j + 3]) & 0xFF);
+            dst[i] = ((bytes[j]) << 24) |
+                ((bytes[j + 1] & 0xFF) << 16)
+                | ((bytes[j + 2] & 0xFF) << 8)
+                | ((bytes[j + 3]) & 0xFF);
             ++i;
+        }
+         */
+        int[] dst = new int[bytes.length / 2];
+        for (int i = 0, j = 0; i < dst.length; i++, j += 2) {
+            dst[i] = ((bytes[j] & 0xff) << 8) | (bytes[j + 1] & 0xff);
         }
         return dst;
     }

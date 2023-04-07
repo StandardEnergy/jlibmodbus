@@ -83,6 +83,9 @@ public class SerialPortFactoryTcpClient extends SerialPortAbstractFactory {
                     socket.setKeepAlive(parameters.isKeepAlive());
                     socket.setSoTimeout(getReadTimeout());
                     socket.setTcpNoDelay(true);
+                    //2023.01.12 Jeongsoo Chae
+                    socket.setSoLinger(true, 0);
+                    socket.setReuseAddress(true);
 
                     is = new InputStreamTCP(socket);
                     os = new OutputStreamTCP(socket);

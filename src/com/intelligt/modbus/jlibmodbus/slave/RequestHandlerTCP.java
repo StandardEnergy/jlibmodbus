@@ -66,7 +66,9 @@ class RequestHandlerTCP extends RequestHandler {
                 } catch (ModbusNumberException e) {
                     Modbus.log().warning(e.getLocalizedMessage());
                 }
-            } while (isListening());
+            //2023.04.07 Jeongsoo Chae
+            //} while (isListening());
+            } while (isListening() && getSlave().isListening());
         } catch (ModbusIOException e) {
             if (getSlave().isListening()) {
                 Modbus.log().warning(e.getLocalizedMessage());

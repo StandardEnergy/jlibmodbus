@@ -56,6 +56,8 @@ public class ModbusSlaveTCP extends ModbusSlave implements Runnable {
     synchronized public void listenImpl() throws ModbusIOException {
         try {
             server = new ServerSocket(tcp.getPort(), 0, tcp.getHost());
+            //2023.04.07 Jeongsoo Chae
+            server.setReuseAddress(true);
             mainThread = new Thread(this);
             setListening(true);
             mainThread.start();
