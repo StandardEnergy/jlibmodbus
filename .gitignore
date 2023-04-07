@@ -18,6 +18,11 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
+# Gradle
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
 # Compiled class files
 *.class
 
