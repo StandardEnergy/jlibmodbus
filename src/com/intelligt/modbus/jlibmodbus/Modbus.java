@@ -71,22 +71,6 @@ final public class Modbus {
     static {
         setLogLevel(logLevel);
         log().setUseParentHandlers(false);
-        log().addHandler(new Handler() {
-            @Override
-            public void publish(LogRecord record) {
-                System.out.println(record.getLevel().getName() + ": " + record.getMessage());
-            }
-
-            @Override
-            public void flush() {
-                //do nothing
-            }
-
-            @Override
-            public void close() throws SecurityException {
-                //do nothing
-            }
-        });
     }
 
     private Modbus() {
@@ -290,7 +274,7 @@ final public class Modbus {
      * @return "true" if register value is correct, else "false".
      */
     static public boolean checkRegisterValue(int value) {
-        return checkRange(value, 0, Modbus.MAX_REGISTER_VALUE);
+        return checkRange((short)value, Short.MIN_VALUE, Short.MAX_VALUE);
     }
 
     /**
