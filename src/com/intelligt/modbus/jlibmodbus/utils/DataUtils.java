@@ -78,7 +78,7 @@ public class DataUtils {
         return dst;
     }
 
-    static public int[] BeToRegArray(byte[] bytes) {
+   static public int[] BeToRegArray(byte[] bytes) {
         int[] dst = new int[bytes.length / 2];
         for (int i = 0, j = 0; i < dst.length; i++, j += 2)
             dst[i] = ((bytes[j] & 0xff) << 8) | (bytes[j + 1] & 0xff);
@@ -91,10 +91,10 @@ public class DataUtils {
         }
         int[] dst = new int[bytes.length / 4];
         for (int i = 0, j = 0; i < dst.length; i++, j += 4)
-            dst[i] = ((bytes[j]) << 24) |
-                    ((bytes[j + 1] & 0xFF) << 16) |
-                    ((bytes[j + 2] & 0xFF) << 8) |
-                    ((bytes[j + 3]) & 0xFF);
+            dst[i] = ((bytes[j] )<< 24)             |
+                     ((bytes[j + 1] & 0xFF) << 16)  |
+                     ((bytes[j + 2] & 0xFF) << 8)   |
+                     ((bytes[j + 3]) & 0xFF);
 
         return dst;
     }
@@ -123,7 +123,7 @@ public class DataUtils {
     }
 
     public static byte[] toByteArray(short i16) {
-        return new byte[] { byteHigh(i16), byteLow(i16) };
+        return new byte[]{byteHigh(i16), byteLow(i16)};
     }
 
     public static int toShort(int h, int l) {

@@ -67,9 +67,10 @@ class ModbusMasterConnectionTCP extends ModbusConnection {
                     socket.connect(isa, parameters.getConnectionTimeout());
                     socket.setKeepAlive(parameters.isKeepAlive());
                     socket.setTcpNoDelay(true);
-                    //2023.01.12 Jeongsoo Chae
+                    // 종료 시 RST로 즉시 연결 해제 (SO_LINGER 0)
+                    // - 종료 후 TIME_WAIT, FIN_WAIT2 상태 소켓 잔류 방지
+                    // - 미전송 데이터는 폐기되며, 상대 장비에는 연결 재설정(connection reset)으로 인식됨
                     socket.setSoLinger(true, 0);
-                    socket.setReuseAddress(true);
 
                     transport = ModbusTransportFactory.createTCP(socket);
                     setReadTimeout(getReadTimeout());
