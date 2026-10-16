@@ -69,7 +69,6 @@ class ModbusMasterConnectionTCP extends ModbusConnection {
                     socket.setTcpNoDelay(true);
                     //2023.01.12 Jeongsoo Chae
                     socket.setSoLinger(true, 0);
-                    socket.setReuseAddress(true);
 
                     transport = ModbusTransportFactory.createTCP(socket);
                     setReadTimeout(getReadTimeout());
