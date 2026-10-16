@@ -66,8 +66,9 @@ class RequestHandlerTCP extends RequestHandler {
                 } catch (ModbusNumberException e) {
                     Modbus.log().warning(e.getLocalizedMessage());
                 }
-            //2023.04.07 Jeongsoo Chae
-            //} while (isListening());
+            // 슬레이브 종료 시 연결된 마스터와의 연결도 종료
+            // - shutdown()은 서버 소켓만 닫으므로 기존 연결은 슬레이브 상태를 별도로 확인
+            // - 다음 요청 처리 후 또는 읽기 제한 시간 경과 후 반영
             } while (isListening() && getSlave().isListening());
         } catch (ModbusIOException e) {
             if (getSlave().isListening()) {
