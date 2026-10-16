@@ -1,0 +1,4 @@
+# 래퍼 스크립트 줄바꿈 고정 (Gradle 권장 설정)
+/gradlew        text eol=lf
+*.bat           text eol=crlf
+*.jar           binary
